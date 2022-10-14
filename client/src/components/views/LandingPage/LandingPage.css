@@ -1,0 +1,470 @@
+/* 여기서 부터 */
+/* font-family: 'Open Sans', sans-serif; */
+
+/* Global */
+:root {
+  /* Color */
+  --color-white: #ffffff;
+  --color-light-white: #eeeeee;
+  --color-dark-white: #bdbdbd;
+  --color-pink: #f3aed1;
+  --color-dark-pink: #ff6863;
+  --color-black: #4d4d4d;
+  --color-dark-grey: #4d4d4d;
+  --color-grey: #616161;
+  --color-light-grey: #7c7979;
+  --color-blue: #73aace;
+  --color-yellow: #fff7d1;
+  --color-orange: #feb546;
+  --color-black: #000000;
+
+  /* Font size */
+  --font-large: 48px;
+  --font-medium: 28px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
+
+  /* Font weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* Size */
+  --size-border-radius: 4px;
+
+  /* Annimation */
+  --animation-duration: 300ms;
+}
+
+/* Universal tags */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  cursor: default; /*텍스트 위에 마우스 커서 올라가면 텍스트 형식으로 바뀌니까 고정하자*/
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  /*버튼의 기본적인 틀을 조정한거*/
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+/* Typography */
+h1 {
+  font-size: var(--font-large);
+  font-weight: var(--weight-bold);
+  color: var(--color-black);
+  margin: 16px 0px;
+}
+
+h2 {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+  color: var(--color-black);
+  margin: 8px 0;
+}
+
+h3 {
+  font-size: var(--font-regular);
+  font-weight: var(--font-regular);
+  color: var(--color-black);
+  margin: 8px 0;
+}
+
+p {
+  font-size: var(--font-regular);
+  font-weight: var(--font-regular);
+  color: var(--color-black);
+  margin: 4px 0;
+}
+link {
+  text-decoration: none;
+  color: rgb(137, 43, 12);
+  font-size: 100px;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+link:hover {
+  font-size: 100px;
+  color: rgb(125, 8, 98);
+}
+/* Navbar */
+#navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /*수평축이니까*/
+  background-color: white;
+  opacity: 0.5;
+  align-items: center; /*수평축에 반대로 수직으로 센터해야지 빈대로 정령=align items*/
+  /* color: var(--color-white); */
+  color: #000000;
+  padding: 16px; /*좀 안으로 넣자*/
+  transition: all var(--animation-duration) ease-in-out;
+  z-index: 1;
+}
+
+#navbar.navbar--dark {
+  background-color: #df92b8;
+  padding: 6px;
+}
+.navbar__menu {
+  display: flex; /*flex박스로 한줄로 정렬*/
+}
+.navbar__logo {
+  font-size: var(--font-large);
+  font-weight: var(--weight-semi-bold);
+  font-family: "Times New Roman", Times, serif;
+  font-size: medium;
+  color: #616161;
+}
+.navbar__menu__item {
+  padding: 8px 12px; /*간격이 넘 없어서 주고 위8 양옆12 4개로 나눌땐 시계방향*/
+  margin: 4px;
+  cursor: pointer; /*마우스 올라가면 손가락 모양이 됨*/
+  border-radius: var(--size-border-radius);
+  border: 1px solid transparent;
+}
+
+.navbar__menu__item:hover {
+  background-color: #aec1eb;
+  border-color: var(--color-white);
+}
+
+.navbar__toggle-btn {
+  position: absolute; /*기존의 위치에서 빠져나오기*/
+  top: 22px;
+  right: 32px;
+  font-size: 24px;
+  /* color: var(--color-light-white); */
+  color: #aec1eb;
+  display: none; /*평소에는 보이면 안되기 때문에*/
+}
+
+#home {
+  /* background-image: url(../../../../public/img/g.png); */
+
+  /* background: url(imgs/p.jpg) center/cover no-repeat; center가운데 cover반응형 norepeat반복안하게 */
+  padding: 40px; /*전반적인 홈 화면 위아래 패딩*/
+  padding-top: 120px;
+  text-align: center; /*모든 아이템 중간 정렬*/
+}
+.home__avatar {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 2px solid lavenderblush; /*사진 테두리 경계주고 채우기*/
+}
+.home__title,
+.home__description {
+  color: black;
+}
+.home__contact {
+  font-size: var(--font-regular);
+  font-weight: var(--weight-bold);
+  margin: 24px;
+  padding: 8px 12px;
+  border: 2px solid lavenderblush;
+  border-radius: 4px;
+  color: mediumorchid;
+}
+.home__contact:hover {
+  background-color: var(--color-pink);
+  opacity: 60%;
+}
+
+.work__categories {
+  margin: 40px;
+}
+.category__btn {
+  border: 1px solid #f02182;
+  border-radius: var(--size-border-radius);
+  font-size: var(--font-regular);
+  padding: 8px 48px;
+  position: relative;
+}
+/* .category__btn.selected, */
+.category__btn:hover {
+  background-color: #aec1eb;
+  color: #ecedf0;
+}
+
+.category__btn.selected .category__count,
+.category__btn:hover .category__count {
+  opacity: 1;
+  top: 0;
+}
+
+.category__count {
+  background-color: #e21a7e;
+  border-radius: 50%;
+  color: #eeeeee;
+  width: 24px;
+  height: 24px;
+  line-height: 24px; /*숫자가 중간이 되기위해 높이와 동일하게 잡기*/
+  display: inline-block; /*span태그는 꽉차게 하기위함이 있기때문에 계란모양처럼 원이 생겨서 이걸 구로 만들기 위함*/
+  position: absolute;
+  top: -20px;
+  right: 16px;
+  opacity: 0;
+  transition: var(--animation-duration) ease-in;
+}
+
+.work__projects {
+  display: flex;
+  flex-wrap: wrap; /*아이템이 꽉차면 자동으로 줄바꿈 할 수 있도록함*/
+  justify-content: center;
+  opacity: 1;
+  transition: all var(--animation-duration) ease-out;
+}
+
+.work__projects.anim-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(40px);
+}
+.project {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 250px;
+  margin: 2px;
+  background-color: #aec1eb;
+}
+
+.project.invisible {
+  display: none;
+}
+
+.project__img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.project__description {
+  position: absolute;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(10px); /*살짜쿵 내리고~*/
+  transition: all var(--animation-duration) ease-in;
+}
+/* 원래 있던 박스에서 벗어나서 위치를 바꾸는 것은 포지션 앱솔루트이다 */
+
+.project:hover .project__description {
+  opacity: 0.8;
+  transform: translateY(0px); /*살짜쿵 올리면 슉슉슉*/
+}
+
+.project__description h3 {
+  color: var(--color-orange);
+}
+
+.project__description h3:after {
+  content: "";
+  display: block; /*한줄에 하나씩*/
+  position: relative;
+  left: 50%;
+  width: 50px;
+  height: 2px;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background-color: var(--color-dark-white);
+}
+
+#contact {
+  /* background-color: #df92b8; */
+  background-color: #aec1eb;
+}
+.contact__title,
+.contact__email,
+.contact__rights {
+  color: var(--color-white);
+}
+
+.contact__title {
+  margin: 32px 0;
+}
+.contact__links {
+  font-size: var(--font-large);
+  margin: 24px 0;
+}
+.contact__links i {
+  transition: all var(--animation-duration) ease-in;
+}
+.contact__links i:hover {
+  transform: scale(1.1);
+  color: #b90e86;
+}
+
+/* Section common섹션들의 가운데 정렬 일반적으로 정의 */
+/* 이걸 정의했으면 html에서 각 세션마다 클래스로 정의함 */
+.section {
+  padding: 50px;
+  text-align: center;
+  /* max-width: 1200px;너무 끝까지 늘어나면 보기 안좋으니 최대로 늘릴수 있는걸 지정 */
+  margin: auto; /*텍스트가 왼쪽에 치우친 경우 오른쪽에만 마진이 들어갔으므로 사용*/
+}
+
+/*위 섹션부분중 맥스윗을 빼서 필요한 부분에만 적용하도록 한다*/
+.section__container {
+  max-width: 1200px; /*너무 끝까지 늘어나면 보기 안좋으니 최대로 늘릴수 있는걸 지정*/
+  margin: auto;
+}
+
+#testimonials {
+  background-color: var(--color-light-white);
+}
+
+.testimonials {
+  margin: 40px;
+}
+
+.testimonial {
+  display: flex;
+  margin: 32px 0;
+}
+.testimonial__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.testimonial__avatar:nth-child(odd) {
+  margin-right: 40px;
+}
+.testimonial__avatar:nth-child(even) {
+  margin-left: 40px;
+}
+.testimonial__speech-bubble {
+  padding: 18px;
+  background-color: var(--color-white);
+  border-radius: var(--size-border-radius);
+}
+.testimonial__speech-bubble p {
+  color: var(--color-light-grey);
+}
+.testimonial__speech-bubble a {
+  color: #e21a7e;
+}
+
+/* For below 768px screen width*/
+@media screen and (max-width: 768px) {
+  :root {
+    /* Font size */
+    --font-large: 30px;
+    --font-medium: 18px;
+    --font-regular: 16px;
+    --font-small: 14px;
+    --font-micro: 12px;
+  }
+  .navbar__toggle-btn {
+    display: block;
+    top: 16px;
+    right: 16px;
+    font-size: medium;
+  }
+  #navbar {
+    flex-direction: column; /*위에서 아래로 수직형태*/ /*수평 반대쪽에서 정리할때는 align items*/
+    align-items: flex-start;
+    background-color: #df92b8;
+    opacity: 95%;
+  }
+  #navbar.navbar--dark {
+    padding: 14px;
+  }
+  .navbar__menu {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    display: none;
+  }
+  .navbar__menu.open {
+    display: block;
+  }
+  .section {
+    padding: 16px;
+    padding-top: 40px;
+  }
+
+  .about__majors {
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  .major__icon {
+    margin: auto;
+  }
+
+  .major {
+    margin-bottom: 30px;
+  }
+
+  .skillset {
+    flex-direction: column;
+  }
+  .category__btn {
+    margin: 4px 0;
+    width: 100%;
+  }
+
+  .project {
+    flex-grow: 1;
+  }
+
+  .testimonial {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial__avatar {
+    width: 120px;
+    height: 120px;
+  }
+  .testimonial__avatar:nth-child(even),
+  .testimonial__avatar:nth-child(odd) {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .testimonial__speech-bubble {
+    order: 1;
+  }
+
+  .arrow-up {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    line-height: 50px;
+    right: 16px;
+    bottom: 16px;
+  }
+}

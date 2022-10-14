@@ -1,0 +1,89 @@
+.input_box {
+  background-color: #c1ceec;
+  border-color: white;
+  border-style: solid;
+  width: 530px;
+  height: 45px;
+  border-radius: 20px 20px 20px 20px;
+  color: rgb(4, 11, 49);
+  margin-bottom: 1em;
+  padding: 0 16px;
+}
+
+.formstyle {
+  background-color: white;
+  border-width: 50px;
+}
+.form {
+  background-color: #aec1eb;
+  opacity: 0.8;
+  border-radius: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+/* #login form span {
+  background-color: #363b41;
+  border-radius: 3px 0px 0px 3px;
+  color: #606468;
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+} */
+.hr {
+  border-color: #aec1eb;
+  background-color: #9eb4e2;
+  border-width: 2px;
+}
+.Logo {
+  display: "flex";
+  /* color: rgb(58, 108, 180); */
+  color: #2e4d90;
+  opacity: 0.7;
+  font-size: 50px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  border-width: 50px;
+}
+.link {
+  text-decoration: none;
+  color: rgb(252, 242, 242);
+  font-size: 15px;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.link:hover {
+  color: rgb(254, 197, 241);
+}
+#button:hover {
+  background-color: rgb(182, 227, 220);
+  opacity: 0.8;
+  color: black;
+  border-color: rgb(136, 203, 191);
+}
+#button {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  background-color: #bddff7;
+  border-color: white;
+  border-style: dashed;
+  width: 500px;
+  height: 45px;
+  border-radius: 20px 20px 20px 20px;
+  color: rgb(4, 11, 49);
+  margin-bottom: 1em;
+  padding: 0 16px;
+}
+.label {
+  color: white;
+  font-size: 17px;
+  font-family: "Times New Roman", Times, serif;
+  opacity: 1;
+}
+.heart {
+  color: rgb(248, 226, 239);
+}
