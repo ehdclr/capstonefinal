@@ -1,4 +1,4 @@
 module.exports = {
   initset: require("./initset"),
-  qrscar: require("./qrscan")
+  qrscan: require("./qrscan")
 }

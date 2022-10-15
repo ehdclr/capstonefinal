@@ -25,7 +25,12 @@ const userSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
-
+  token: {
+    type: String,
+  },
+  tokenExp: {
+    type: Number,
+  },
   secondpassword: {
     type: String,
     minlength: 4,

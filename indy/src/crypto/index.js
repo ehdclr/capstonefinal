@@ -20,14 +20,27 @@ exports.getMasterSecretId = async (wallet) => {
 
 exports.authCrypt = async function (senderWallet, recipientWallet, message) {
   let userVerkey = await sdk.keyForLocalDid(senderWallet, await indy.did.getDidFromWallet(senderWallet));
-  let storeVerkey = await sdk.keyForLocalDid(recipientWallet, await indy.did.getDidFromWallet(recipientWallet));
-  let buffer = await sdk.packMessage(senderWallet, Buffer.from(message, 'utf8'),  storeVerkey, userVerkey);
-  return Buffer.from(buffer).toString('base64')
+  let storeVerkey = [];
+  storeVerkey.push(await sdk.keyForLocalDid(recipientWallet, await indy.did.getDidFromWallet(recipientWallet)));
+  console.log(storeVerkey)
+  
+  let t1 = Buffer.from(JSON.stringify(message))
+  //wh, message, receiverKeys, senderVK 
+  let buffer = await sdk.packMessage(senderWallet,  t1, storeVerkey, userVerkey);
+  console.log(buffer)
+  return buffer
 };
 
 exports.authDecrypt = async function (recipientWallet, message) {
   // let recipientVerkey = await sdk.keyForLocalDid(recipientWallet, myDid);
-  let [, decryptedMessageBuffer] = await sdk.unpackMessage(recipientWallet, Buffer.from(message, 'base64'));
-  let buffer = Buffer.from(decryptedMessageBuffer).toString('utf8');
+  console.log(recipientWallet, message)
+  let uint8 = new Uint8Array(Buffer.from(message));
+  console.log(uint8);
+  let decryptedMessageBuffer = await sdk.unpackMessage(recipientWallet, uint8);
+  console.log(decryptedMessageBuffer)
+
+  let buffer = Buffer.from(decryptedMessageBuffer).toString('utf-8');
+  console.log("dwqdqwd", JSON.parse(buffer))
+  
   return JSON.parse(buffer);
 };

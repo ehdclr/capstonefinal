@@ -20,8 +20,9 @@ exports.getTailsWriterConfig = () => {
   return tailsWriterConfig;
 }
 
-exports.walletKeyHash = (walletName) => {
+exports.walletKeyHash = async(walletName, walletKey) => {
   var md = forge.md.sha256.create();
-  md.update(walletName);
-  md.digest().toHex();
+  md.update(walletName+walletKey);
+  let hashResult = md.digest().toHex();
+  return hashResult.slice(0, 32);
 }

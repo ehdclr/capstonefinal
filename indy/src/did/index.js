@@ -14,6 +14,7 @@ exports.createDid = async function (didInfoParam, proverWallet) {
   let didInfo = { seed: didInfoParam } || {};
   try {
     await indy.did.settingGovernment();
+    console.log(didInfo)
     const [UserDid, UserVerkey] = await sdk.createAndStoreMyDid(proverWallet, didInfo);
     let didMeta = JSON.stringify({
       primary: true,

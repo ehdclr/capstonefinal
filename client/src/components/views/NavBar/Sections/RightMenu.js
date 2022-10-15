@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -20,15 +21,17 @@ function RightMenu() {
   };
 
   const onSignHandler = () => {
-    axios.post(`/api/users/login`).then((response) => {
+    // axios.post(`/api/users/login`).then((response) => {
       navigate("/login");
-    });
+    // });
   };
 
   const onRegisterHandler = () => {
-    axios.post(`/api/users/register`).then((response) => {
-      navigate("/register");
-    });
+
+    // axios.post(`/api/users/register`).then((response) => {
+    
+    navigate("/register");
+    // });
   };
 
   const clickMe = () => {

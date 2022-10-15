@@ -20,13 +20,16 @@ const user3Schema = mongoose.Schema({
     type: Number,
     maxlength: 5,
   },
-  image: {
+  images: {
     type: String,
   },
   email: {
     type: String,
     unique: 1,
   },
+  encryptedMessage: {
+    type: String,
+  }
 });
 
 user3Schema.pre("save", function (next) {

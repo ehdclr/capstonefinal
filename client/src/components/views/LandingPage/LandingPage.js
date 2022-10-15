@@ -1,12 +1,15 @@
 import React from "react";
-// import { useEffect } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Auth from "../../../hoc/auth";
+import { Link } from "react-router-dom";
+
 import "../LandingPage/LandingPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-// import {} from "react-pro-sidebar/dist/css/styles.css";
+import "react-pro-sidebar/dist/css/styles.css";
 
 <script
   src="https://kit.fontawesome.com/2be04788dd.js"
@@ -14,11 +17,75 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 ></script>;
 
 function LandingPage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   axios.get("/api/hello").then((response) => console.log(response.data));
-  // }, []);
+  const onClickHandler = () => {
+    axios.get(`/api/users/logout`).then((response) => {
+      if (response.data.success) {
+        // props.history.push("/login")
+        navigate("/login");
+      } else {
+        alert("로그아웃 하는데 실패 했습니다.");
+      }
+    });
+  };
+
+  const onRegisterHandler = () => {
+    axios.post(`/api/users/login`).then((response) => {
+      // if (response.data.success) {
+      // props.history.push("/login")
+      navigate("/login");
+      // } else {
+      //     alert('로그아웃 하는데 실패 했습니다.')
+      // }
+    });
+  };
+
+  const onSignHandler = () => {
+    axios.post(`/api/users/register`).then((response) => {
+      // if (response.data.success) {
+      //     // props.history.push("/login")
+      navigate("/register");
+      // } else {
+      //     alert('로그아웃 하는데 실패 했습니다.')
+      // }
+    });
+  };
+
+  const onClickDrop = () => {
+    // axios.get(`/api/users/logout`)
+    //     .then(response => {
+    //         if (response.data.success) {
+    //             // props.history.push("/login")
+    //             navigate('/login');
+    //         } else {
+    //             alert('로그아웃 하는데 실패 했습니다.')
+    //         }
+    //     })
+    // navigate('/login');
+    function scrollIntoView(selector) {
+      const scrollTo = document.querySelector(selector);
+      scrollTo.scrollIntoView({ behavior: "smooth" });
+    }
+    const navbarMenu = document.querySelector(".navbar__menu");
+    navbarMenu.addEventListener("click", (event) => {
+      const target = event.target;
+      const link = target.dataset.link;
+      if (link == null) {
+        return;
+      }
+      navbarMenu.classList.remove("open");
+      scrollIntoView(link);
+    });
+    const navbarToggleBtn = document.querySelector(".navbar__toggle-btn");
+    navbarToggleBtn.addEventListener("click", () => {
+      navbarMenu.classList.toggle("open");
+    });
+  };
+
+  const clickMe = () => {
+    navigate("/idcard");
+  };
   return (
     <div>
       <section id="home">

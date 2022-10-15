@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import LeftMenu from "./Sections/LeftMenu";
 import RightMenu from "./Sections/RightMenu";
-import { Drawer, Button } from "antd";
-//import { Icon } from "@ant-design/icons";
 import "./Sections/Navbar.css";
-const Logo = require("../../../videos/logo.jpg");
+const Logo = require("../../../images/logo.jpg");
 
 function NavBar() {
   return (
@@ -21,7 +19,7 @@ function NavBar() {
           <img
             src={Logo}
             alt="Logo"
-            style={{ height: "60px", width: "60px", marginTop: "-25px" }}
+            style={{ height: "60px", width: "60px", marginTop: "-15px" }}
           />
         </a>
       </div>

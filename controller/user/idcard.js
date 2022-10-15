@@ -10,7 +10,6 @@ module.exports = {
       //업로드한 이미지 multer를 통해서 이미지 파일이 여기로 옴
       // aws에 업로드 할 것임
       //이미지가 저장된 aws url 주소를 반환하도록 할 것임
-
       // let user1;
       let token = req.cookies.x_auth;
       const vcObj = {};
@@ -24,11 +23,11 @@ module.exports = {
         if (err) throw err;
         if (!user) return res.json({ message: "토큰이 만료되었습니다." });
         if (user) {
-          const user3 = new User3({...req.body, image: req.body.image, email: user.email,
+          const user3 = new User3({...req.body, email: user.email,
           });
-          user3.save();
-          let [proverWallet, userDid, userVerkey, credential, revId, revRegDelta, credId, ] = await indy.credentials.CreateCredentialProcess(user.email, user.password, vcObj);
-          console.log("Create new User account",await sdk.listMyDidsWithMeta(proverWallet));
+          await user3.save();
+          let [proverWallet, userDid, userVerkey, credential, revId, revRegDelta, credId] = await indy.credentials.CreateCredentialProcess(user.email, user.password, vcObj);
+          console.log("Create new user account",await sdk.listMyDidsWithMeta(proverWallet));
           console.log("userDid: ",userDid, "userVerkey: ",userVerkey,"credential :",credential,"revId: ",revId,"revRegDelta: ", revRegDelta,"credId: ", credId);
 
           await sdk.closeWallet(proverWallet);

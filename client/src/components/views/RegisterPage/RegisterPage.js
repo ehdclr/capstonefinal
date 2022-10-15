@@ -74,7 +74,7 @@ function RegisterPage() {
         onSubmit={onSubmitHandler}
       >
         <div className="Logo">
-          {/* <FontAwesomeIcon icon={faHeart} /> */} Register
+          Register
           <hr className="hr" />
         </div>
         <div

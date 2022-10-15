@@ -6,14 +6,19 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-exports.getCredential = async () => {
-  let cred = sdk.proverGetCredential()
-  let credValue = cred['attrs']; 
+exports.getCredential = async (wallet) => {
+  let issuerWallet = await indy.wallet.get(process.env.COMMUSERVEICECENTER_WALLET_NAME, process.env.COMMUSERVEICECENTER_WALLET_KEY)
+  let schemaId = await indy.did.getEndpointDidAttribute(issuerWallet, "schemas");
+  let filter = {"schema_id" : schemaId}
+  let cred = await sdk.proverGetCredentials(wallet, filter);
+  let credValue = cred['attrs'];
+  return credValue;
 }
 
 //(createDid). 1. 2. 3
 exports.CreateCredentialProcess = async (walletName, walletKey, value) => {
-  let seedInfo = indy.utils.walletKeyHash(walletName);
+  let seedInfo = await indy.utils.walletKeyHash(walletName, walletKey);
+  console.log(seedInfo);
   let proverWallet = await indy.wallet.get(walletName, walletKey);
   let issuerWallet = await indy.wallet.get(process.env.COMMUSERVEICECENTER_WALLET_NAME, process.env.COMMUSERVEICECENTER_WALLET_KEY);
   let [userDid, userVerkey] = await indy.did.createDid(seedInfo, proverWallet);
@@ -24,9 +29,9 @@ exports.CreateCredentialProcess = async (walletName, walletKey, value) => {
   return [proverWallet, userDid, userVerkey, credential, revId, revRegDelta, credId]
 }
 
-exports.createSeedInfo = async (walletName, secPassword) => {
-  let seedinfo = walletName + secPassword;
-}
+// exports.createSeedInfo = async (walletName, secPassword) => {
+//   let seedinfo = walletName + secPassword;
+// }
 
 //1
 exports.sendCredOffer = async (issuerWallet) => {

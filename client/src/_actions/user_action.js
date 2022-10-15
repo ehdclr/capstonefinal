@@ -5,6 +5,7 @@ import {
   AUTH_USER,
   ID_USER,
   PASSWORD2_USER,
+  QRSCAN_ADMIN,
 } from "./types";
 
 export function loginUser(dataTosubmit) {
@@ -42,13 +43,24 @@ export function idUser(dataTosubmit) {
 
 export function password2User(dataTosubmit) {
   const request = axios
-    .post("/api/users/secondpassword", dataTosubmit)
+    .post("/api/users/secPw", dataTosubmit)
     .then((response) => response.data);
 
   return {
     type: PASSWORD2_USER,
     payload: request,
   };
+}
+
+export function qrScan(dataTosubmit) {
+  const request = axios
+    .post("/api/admins/qrscan", dataTosubmit)
+    .then((response) => response.data);
+  
+  return {
+    type: QRSCAN_ADMIN,
+    payload: request,
+  }
 }
 
 export function auth() {

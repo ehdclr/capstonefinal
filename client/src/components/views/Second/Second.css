@@ -2,7 +2,7 @@
   background-color: #c1ceec;
   border-color: white;
   border-style: solid;
-  width: 556px;
+  width: 530px;
   height: 45px;
   border-radius: 20px 20px 20px 20px;
   color: rgb(4, 11, 49);
@@ -24,16 +24,16 @@
   padding-top: 20px;
 }
 /* #login form span {
-  background-color: #363b41;
-  border-radius: 3px 0px 0px 3px;
-  color: #606468;
-  display: block;
-  float: left;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  width: 50px;
-} */
+    background-color: #363b41;
+    border-radius: 3px 0px 0px 3px;
+    color: #606468;
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+  } */
 .hr {
   border-color: #aec1eb;
   background-color: #9eb4e2;
@@ -45,14 +45,15 @@
   color: #2e4d90;
   opacity: 0.7;
   font-size: 50px;
+  text-align: center;
   font-family: "Times New Roman", Times, serif;
   border-width: 50px;
-  margin-bottom: 0;
 }
 .link {
   text-decoration: none;
   color: rgb(252, 242, 242);
   font-size: 15px;
+  text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 .link:hover {
@@ -70,32 +71,19 @@
   background-color: #bddff7;
   border-color: white;
   border-style: dashed;
-  width: 556px;
+  width: 530px;
   height: 45px;
   border-radius: 20px 20px 20px 20px;
   color: rgb(4, 11, 49);
-  margin: 1em 0;
+  margin-bottom: 1em;
   padding: 0 16px;
 }
-.label1 {
-  color: rgb(21, 20, 20);
+.label {
+  color: white;
   font-size: 17px;
-  font-family: Arial, Helvetica, sans-serif, "Times New Roman", Times, serif;
+  font-family: "Times New Roman", Times, serif;
   opacity: 1;
-  text-align: left;
 }
 .heart {
   color: rgb(248, 226, 239);
-}
-
-.inputImg {
-  padding: 30px 0 20px;
-  margin: auto;
-}
-.Img {
-  margin: auto;
-}
-
-img {
-  margin: auto;
 }

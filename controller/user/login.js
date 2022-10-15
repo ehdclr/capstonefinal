@@ -1,5 +1,5 @@
 const { User } = require("../../models/User");
-
+const indy = require('../../indy/index.js');
 module.exports = {
   post: (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
@@ -29,4 +29,9 @@ module.exports = {
       });
     });
   },
+
+  get: async (req, res) => {
+    req.cookie("x_auth")
+    await indy.credentials.getCredential();
+  }
 };

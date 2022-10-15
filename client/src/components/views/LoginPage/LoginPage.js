@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "antd/dist/antd.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-
 import "../LoginPage/LoginPage.css";
+
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,9 +24,6 @@ function LoginPage() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-
-    console.log("Email", Email);
-    console.log("Password", Password);
 
     let body = {
       email: Email,
@@ -59,10 +56,9 @@ function LoginPage() {
         onSubmit={onSubmitHandler}
       >
         <div className="Logo">
-          {/* <FontAwesomeIcon icon={faHeart} /> */} Welcome
+          Welcome
           <hr className="hr" />
         </div>
-        {/* <div><img alt="iPhone_01" src="img/e.jpg" alignItems= 'center'   height="400px"  width="500px"/></div> */}
         <br />
         <br />
         <div
@@ -78,7 +74,6 @@ function LoginPage() {
             value={Email}
             onChange={onEmailHandler}
           ></input>
-          {/* <input className='input_box' type="email" value={Email} onChange={onEmailHandler}   /> */}
           <label className="label">Password</label>
           <input
             className="input_box"

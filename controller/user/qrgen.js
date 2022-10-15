@@ -6,15 +6,18 @@ module.exports = {
   //postman test용, 원래는 get요청
   post: async (req, res) => {
     try {
-      let walletName = req.body.username;
-      let walletKey = req.body.password;
-
-      let proverWallet = await indy.wallet.get(walletName, walletKey);
+      let token = req.cookies.x_auth;
+      let user = await User.findOne({ token: token })
+    
+      let proverWallet = await indy.wallet.get(user.email, user.password);
       let encryptedMessage = await indy.proofs.ProverSubmitPresentation(proverWallet);
-
+      
+      await User3.updateOne({ email: user.email }, { encryptedMessage: encryptedMessage })
+      
       if (encryptedMessage) {
         return res.status(200).json({
-          encryptedMessage
+          success: true,
+          email: user.email
         })
       } else {
        return res.status(400).json({

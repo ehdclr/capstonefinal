@@ -96,62 +96,61 @@ exports.ProverSubmitPresentation = async (proverWallet) => {
   let [proofRequest, credsForProof, requestedCreds] = await exports.createVerificationPresentation(issuerWallet, proverWallet, timestampOfDelta)
   
   let message = [proverWallet, proverRevRegDelta, timestampOfDelta, proofRequest, credsForProof, requestedCreds]
+  console.log(message)
   let authCryptMessage = await indy.crypto.authCrypt(proverWallet, verifierWallet, message)
   await sdk.closeWallet(issuerWallet)
   await sdk.closeWallet(verifierWallet);
   return authCryptMessage;
 }
 
-
-
-// exports.acceptProofReq = async (proverWallet) => {
-//   let issuerWallet = await indy.wallet.get(
-//     process.env.COMMUSERVEICECENTER_WALLET_NAME,
-//     process.env.COMMUSERVEICECENTER_WALLET_KEY)
-//   let issuerDid = await indy.did.getDidFromWallet(issuerWallet);
-//   let proverDid = await indy.did.getDidFromWallet(proverWallet);
-//   let masterSecretId = await indy.crypto.getMasterSecretId(proverWallet);
-//   let revRegDefId = await indy.did.getEndpointDidAttribute(issuerWallet, 'revocation_registry_id')
-//   let [proverRevRegDelta, timestampOfDelta] = await indy.ledger.getRevRegDelta(await indy.pool.get(), issuerDid, revRegDefId[0], 0, indy.utils.getCurrentTimeInSeconds())
-//   let [proofRequest, credsForProof, requestedCreds] = await exports.createVerificationPresentation(issuerWallet, proverWallet, timestampOfDelta)
-
-//   let [schemas, credDefs, revocStates] = await indy.ledger.proverGetEntitiesFromLedger(proverWallet, proverDid, credsForProof, proverRevRegDelta, timestampOfDelta);
-//   let proof = await sdk.proverCreateProof(proverWallet, proofRequest, requestedCreds, masterSecretId, schemas, credDefs, revocStates);
-//   let proofMessage = {};
-//   proofMessage["createdProof"] = proof;
-//   proofMessage["proofRequest"] = proofRequest;
-  
-//   await sdk.closeWallet(proverWallet);
-//   await sdk.closeWallet(issuerWallet);
-//   return proofMessage;
-// }
-
-
-
-
 exports.verifyProof = async (encryptedMessage) => {
-  
-  let verifierWallet = await indy.wallet.get(process.env.STORE_WALLET_NAME, process.env.STORE_WALLET_NAME);
+  let verifierWallet = await indy.wallet.get(process.env.STORE_WALLET_NAME, process.env.STORE_WALLET_KEY);
   let verifierDid = await indy.did.getDidFromWallet(verifierWallet);
   let decryptedMessage = await indy.crypto.authDecrypt(verifierWallet, encryptedMessage)
-  let userData = decryptedMessage[message];
+  let userData = JSON.parse(decryptedMessage["message"]);
+  
+  console.log(typeof userData);
   let proverWallet = userData[0];
+  
   let proverDid = await indy.did.getDidFromWallet(proverWallet);
 
   let masterSecretId = await indy.crypto.getMasterSecretId(proverWallet);
-
   let [provSchemas, provCredDefs, provRevocStates] = await indy.ledger.proverGetEntitiesFromLedger(proverWallet, proverDid, userData[4], userData[1], userData[2]);
 
   let proof = await sdk.proverCreateProof(proverWallet, userData[3], userData[5], masterSecretId, provSchemas, provCredDefs, provRevocStates);
-  
   let [schemas, credDefs, revRegDefs, revRegs] = await indy.ledger.verifierGetEntitiesFromLedger(verifierDid, proof["identifiers"])
-
   const result = await sdk.verifierVerifyProof(userData[3], proof, schemas, credDefs, revRegDefs, revRegs);
   
   await sdk.closeWallet(proverWallet);
   await sdk.closeWallet(verifierWallet);
   return result
 }
+
+
+// exports.verifyProof = async (encryptedMessage) => {
+//   let issuerWallet = await indy.wallet.get(
+//     process.env.COMMUSERVEICECENTER_WALLET_NAME,
+//     process.env.COMMUSERVEICECENTER_WALLET_KEY)
+  
+//   let decryptedMessage[message] = await indy.crypto.authDecrypt(verifierWallet, encryptedMessage)
+//   let [proverWallet, requestedCreds, timestampOfDelta] = decryptedMessage[message]
+
+//   let verifierWallet = await indy.wallet.get(process.env.STORE_WALLET_NAME, process.env.STORE_WALLET_NAME);
+//   let verifierDid = await indy.did.getDidFromWallet(verifierWallet);
+//   // let decryptedMessage = await indy.crypto.authDecrypt(verifierWallet, encryptedMessage)
+//   let userData = decryptedMessage[message];
+//   let proverDid = await indy.did.getDidFromWallet(proverWallet);
+
+//   let masterSecretId = await indy.crypto.getMasterSecretId(proverWallet);
+//   let [provSchemas, provCredDefs, provRevocStates] = await indy.ledger.proverGetEntitiesFromLedger(proverWallet, proverDid, userData[4], userData[1], userData[2]);
+//   let proof = await sdk.proverCreateProof(proverWallet, userData[3], userData[5], masterSecretId, provSchemas, provCredDefs, provRevocStates);
+//   let [schemas, credDefs, revRegDefs, revRegs] = await indy.ledger.verifierGetEntitiesFromLedger(verifierDid, proof["identifiers"])
+//   const result = await sdk.verifierVerifyProof(userData[3], proof, schemas, credDefs, revRegDefs, revRegs);
+  
+//   await sdk.closeWallet(proverWallet);
+//   await sdk.closeWallet(verifierWallet);
+//   return result
+// }
 
 
 
@@ -180,6 +179,30 @@ exports.verifyProof = async (encryptedMessage) => {
 // exports.SearchCredential = async () => {
   
 // }
+
+
+// exports.acceptProofReq = async (proverWallet) => {
+//   let issuerWallet = await indy.wallet.get(
+//     process.env.COMMUSERVEICECENTER_WALLET_NAME,
+//     process.env.COMMUSERVEICECENTER_WALLET_KEY)
+//   let issuerDid = await indy.did.getDidFromWallet(issuerWallet);
+//   let proverDid = await indy.did.getDidFromWallet(proverWallet);
+//   let masterSecretId = await indy.crypto.getMasterSecretId(proverWallet);
+//   let revRegDefId = await indy.did.getEndpointDidAttribute(issuerWallet, 'revocation_registry_id')
+//   let [proverRevRegDelta, timestampOfDelta] = await indy.ledger.getRevRegDelta(await indy.pool.get(), issuerDid, revRegDefId[0], 0, indy.utils.getCurrentTimeInSeconds())
+//   let [proofRequest, credsForProof, requestedCreds] = await exports.createVerificationPresentation(issuerWallet, proverWallet, timestampOfDelta)
+
+//   let [schemas, credDefs, revocStates] = await indy.ledger.proverGetEntitiesFromLedger(proverWallet, proverDid, credsForProof, proverRevRegDelta, timestampOfDelta);
+//   let proof = await sdk.proverCreateProof(proverWallet, proofRequest, requestedCreds, masterSecretId, schemas, credDefs, revocStates);
+//   let proofMessage = {};
+//   proofMessage["createdProof"] = proof;
+//   proofMessage["proofRequest"] = proofRequest;
+  
+//   await sdk.closeWallet(proverWallet);
+//   await sdk.closeWallet(issuerWallet);
+//   return proofMessage;
+// }
+
 
 
 

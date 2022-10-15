@@ -8,6 +8,12 @@ exports.sendNym = async function (poolHandle, walletHandle, Did, newDid, newKey,
   await sdk.signAndSubmitRequest(poolHandle, walletHandle, Did, nymRequest);
 }
 
+// exports.sendNymTest = async function (poolHandle, walletHandle, Did, newDid, newKey, roll) {
+//   let nymRequest = await sdk.buildNymRequest(Did, newDid, newKey, null, role);
+//   await sdk.signAndSubmitRequest(poolHandle, walletHandle, Did, nymRequest);
+// }
+
+
 exports.sendSchema = async function (poolHandle, walletHandle, Did, schema) {
   // schema = JSON.stringify(schema); // FIXME: Check JSON parsing
   let schemaRequest = await sdk.buildSchemaRequest(Did, schema);
@@ -105,7 +111,6 @@ exports.proverGetEntitiesFromLedger = async function(proverWallet, submitDid, id
 
   let [receivedCredDefId, receivedCredDef] = await indy.ledger.getCredDef(await indy.pool.get(), submitDid, item['cred_def_id']);
     credDefs[receivedCredDefId] = receivedCredDef;
-
   let [receivedRevRegDefId, receivedRevRegDef] = await indy.ledger.getRevRegDef(await indy.pool.get(), submitDid, item['rev_reg_id']);
   let revState = await sdk.createRevocationState(blobStorageReaderHandle, receivedRevRegDef, revRegDelta, timestampOfDelta, revId[0]);
     revStates = {

@@ -1,16 +1,18 @@
 import React, { useState, useRef } from "react";
-import { Input } from "antd";
+
 import { useDispatch } from "react-redux";
 import { idUser } from "../../../_actions/user_action";
 import { Link, useNavigate } from "react-router-dom";
 import "../IdCard/IdCard.css";
-const people = require("../../../videos/profile.jpg");
+import Test from "../Test/Test";
+const people = require("../../../images/profile.jpg");
 
-function IdCard() {
+const IdCard = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [imageUrl, setImageUrl] = useState(null);
+
   const imgRef = useRef();
 
   const onChangeImage = () => {
@@ -33,6 +35,7 @@ function IdCard() {
   const [Id, setId] = useState("");
   const [Age, setAge] = useState("");
   const [Address, setAddress] = useState("");
+  const [Images, setImages] = useState("");
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
@@ -50,6 +53,10 @@ function IdCard() {
     setAddress(event.currentTarget.value);
   };
 
+  const updateImages = (newImages) => {
+    setImages(newImages);
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -58,6 +65,7 @@ function IdCard() {
       id: Id,
       address: Address,
       age: Age,
+      images: Images,
     };
 
     dispatch(idUser(body)).then((response) => {
@@ -78,73 +86,87 @@ function IdCard() {
         alignItems: "center",
         width: "100%",
         height: "100vh",
-        backgroundImage: "url(img/gh.jpg) ",
-        backgroundSize: "cover",
       }}
     >
       <form
-        style={{ display: "flex", flexDirection: "column" }}
+        className="Img"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          padding: "0",
+        }}
         onSubmit={onSubmitHandler}
       >
         <div className="Logo">
-          {/* <FontAwesomeIcon icon={faHeart} /> */} Welcome
-          <hr />
+          Idcard
+          <hr className="hr" />
         </div>
-        {/* <div><img alt="iPhone_01" src="img/e.jpg" alignItems= 'center'   height="400px"  width="500px"/></div> */}
         <br />
         <br />
-        <React.Fragment>
-          <img
-            src={imageUrl ? imageUrl : people}
-            style={{ width: "200px", height: "200px" }}
-          ></img>
-          <input type="file" ref={imgRef} onChange={onChangeImage} />
-        </React.Fragment>
-        <label className="label"> 이름</label>
-        <Input
-          className="input_box"
-          //placeholder="user@naver.com"
-          type="text"
-          value={Name}
-          onChange={onNameHandler}
-        ></Input>
-        {/* <input className='input_box' type="email" value={Email} onChange={onEmailHandler}   /> */}
-        <label className="label">주민번호</label>
-        <input
-          className="input_box"
-          type="text"
-          value={Id}
-          onChange={onIdHandler}
-        />
-        <label className="label">나이</label>
-        <input
-          className="input_box"
-          type="number"
-          value={Age}
-          onChange={onAgeHandler}
-        />
-        <label className="label">주소</label>
-        <input
-          className="input_box"
-          type="text"
-          value={Address}
-          onChange={onAddressHandler}
-        />
+        <div
+          className="form"
+          style={{ display: "flex", flexDirection: "column" }}
+          onSubmit={onSubmitHandler}
+        >
+          {/* <React.Fragment>
+            <img
+              src={imageUrl ? imageUrl : people}
+              style={{ width: "200px", height: "200px" }}
+            ></img>
+            <input
+              className="inputImg"
+              type="file"
+              ref={imgRef}
+              onChange={onChangeImage}
+            />
+          </React.Fragment> */}
+          <Test fileToParents={updateImages}></Test>
+          <label className="label1"> 이름</label>
+          <input
+            className="input_box"
+            //placeholder="user@naver.com"
+            type="text"
+            value={Name}
+            onChange={onNameHandler}
+          ></input>
+          {/* <input className='input_box' type="email" value={Email} onChange={onEmailHandler}   /> */}
+          <label className="label">주민번호</label>
+          <input
+            className="input_box"
+            type="text"
+            value={Id}
+            onChange={onIdHandler}
+          />
+          <label className="label">나이</label>
+          <input
+            className="input_box"
+            type="number"
+            value={Age}
+            onChange={onAgeHandler}
+          />
+          <label className="label">주소</label>
+          <input
+            className="input_box"
+            type="text"
+            value={Address}
+            onChange={onAddressHandler}
+          />
 
-        <button id="button" type="submit">
-          등록
-        </button>
-        {/* <Button id="button" htmlType="submit">
+          <button id="button" type="submit">
+            등록
+          </button>
+          {/* <Button id="button" htmlType="submit">
           Login
         </Button>
         <br /> */}
 
-        <Link className="link" to="/">
-          Home
-        </Link>
+          <Link className="link" to="/">
+            Home
+          </Link>
+        </div>
       </form>
     </div>
   );
-}
+};
 
 export default IdCard;

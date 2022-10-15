@@ -3,6 +3,7 @@ import {
   REGISTER_USER,
   AUTH_USER,
   ID_USER,
+  QRSCAN_ADMIN,
 } from "../_actions/types";
 
 export default function (state = {}, action) {
@@ -19,7 +20,9 @@ export default function (state = {}, action) {
     case ID_USER:
       return { ...state, id: action.payload };
       break;
-
+    case QRSCAN_ADMIN:
+      return { ...state, qrScan: action.payload };
+    
     default:
       return state;
   }
