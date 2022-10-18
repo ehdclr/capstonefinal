@@ -12,6 +12,7 @@ import Auth from "./hoc/auth";
 import NavBar from "./components/views/NavBar/NavBar";
 import Second from "./components/views/Second/Second";
 import Test from "./components/views/Test/Test";
+import Qrcard from "./components/views/QR/QRcard";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/idcard" element={Auth(IdCard, null)} />
             <Route path="/second" element={Auth(Second, true)} />
             <Route path="/test" element={Auth(Test, null)} />
+            <Route path="/qr_card" element={Auth(Qrcard, null)} />
           </Routes>
         </Router>
       </div>

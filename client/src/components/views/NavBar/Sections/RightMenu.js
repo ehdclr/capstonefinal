@@ -22,14 +22,13 @@ function RightMenu() {
 
   const onSignHandler = () => {
     // axios.post(`/api/users/login`).then((response) => {
-      navigate("/login");
+    navigate("/login");
     // });
   };
 
   const onRegisterHandler = () => {
-
     // axios.post(`/api/users/register`).then((response) => {
-    
+
     navigate("/register");
     // });
   };
@@ -46,10 +45,10 @@ function RightMenu() {
     return (
       <ul className="navbar__menu">
         <li button className="navbar__menu__item" onClick={onSignHandler}>
-          로그인
+          Login
         </li>
         <li button className="navbar__menu__item" onClick={onRegisterHandler}>
-          회원가입
+          Sign Up
         </li>
       </ul>
     );
@@ -57,13 +56,13 @@ function RightMenu() {
     return (
       <ul className="navbar__menu">
         <li className="navbar__menu__item" onClick={clickSecond}>
-          QR
+          Wallet
         </li>
         <li className="navbar__menu__item" onClick={clickMe}>
-          등록
+          Register
         </li>
         <li button className="navbar__menu__item" onClick={onClickHandler}>
-          로그아웃
+          Logout
         </li>
       </ul>
     );

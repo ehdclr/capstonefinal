@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Russo+One&family=Tinos&display=swap");
+
 body {
   -ms-overflow-style: none;
 }
@@ -7,14 +9,14 @@ body {
 }
 
 .headerQr {
-  font-size: 40px;
-  font-weight: 700;
   padding: 30px 0;
-  margin-bottom: 0;
-  text-align: center;
-  align-items: center;
-  color: #9eb4e2;
   padding-top: 100px;
+  color: #2e4d90;
+  opacity: 0.7;
+  font-size: 50px;
+  text-align: center;
+  font-family: "Chakra Petch", sans-serif;
+  border-width: 50px;
 }
 
 .hr {
@@ -63,6 +65,16 @@ body {
   padding: 30px;
 }
 
+.main3 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 10px;
+  padding: 30px;
+}
+
 #btnBack {
   background-color: #9eb4e2;
   color: rgba(0, 0, 0, 0.3);
@@ -76,8 +88,72 @@ body {
 #arrow {
   width: 50px;
 }
+
 .textAreaIn {
   /* visibility: hidden; */
   text-align: center;
   align-items: center;
+}
+
+.formContainer {
+  display: flex;
+  margin: 10px;
+  width: 500px;
+  background-color: #fffcf2;
+  border-radius: 15px;
+  justify-content: center;
+  padding: 12px;
+}
+
+.cardImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 11px;
+}
+
+.idcardContent {
+  padding: 20px;
+  font-size: larger;
+  font-weight: 600;
+}
+
+#button:hover {
+  background-color: rgb(182, 227, 220);
+  opacity: 0.8;
+  color: black;
+  border-color: rgb(136, 203, 191);
+}
+#input_button {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 16px;
+  background-color: #bddff7;
+  border-color: white;
+  border-style: dashed;
+  width: 560px;
+  height: 45px;
+  border-radius: 20px 20px 20px 20px;
+  color: rgb(4, 11, 49);
+  margin-bottom: 1em;
+  padding: 0 16px;
+  text-align: center;
+  align-items: center;
+}
+
+.input_button {
+  background-color: #c1ceec;
+  border-color: white;
+  border-style: solid;
+  width: 600px;
+  height: 45px;
+  border-radius: 20px 20px 20px 20px;
+  color: rgb(4, 11, 49);
+  margin-bottom: 1em;
+  padding: 0 16px;
 }

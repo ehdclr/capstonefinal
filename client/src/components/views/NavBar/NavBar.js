@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LeftMenu from "./Sections/LeftMenu";
 import RightMenu from "./Sections/RightMenu";
 import "./Sections/Navbar.css";
-const Logo = require("../../../images/logo.jpg");
+const Logo = require("../../../images/Logo2.png");
 
 function NavBar() {
   return (

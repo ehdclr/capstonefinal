@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Russo+One&family=Tinos&display=swap");
+
 .input_box {
   background-color: #c1ceec;
   border-color: white;
@@ -45,7 +47,7 @@
   color: #2e4d90;
   opacity: 0.7;
   font-size: 50px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Chakra Petch", sans-serif;
   border-width: 50px;
   margin-bottom: 0;
 }
@@ -53,7 +55,7 @@
   text-decoration: none;
   color: rgb(252, 242, 242);
   font-size: 15px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Chakra Petch", sans-serif;
 }
 .link:hover {
   color: rgb(254, 197, 241);
@@ -65,7 +67,7 @@
   border-color: rgb(136, 203, 191);
 }
 #button {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Chakra Petch", sans-serif;
   font-size: 16px;
   background-color: #bddff7;
   border-color: white;
@@ -77,10 +79,14 @@
   margin: 1em 0;
   padding: 0 16px;
 }
-.label1 {
-  color: rgb(21, 20, 20);
+.imgupload {
+  margin-bottom: 10px;
+}
+
+.label {
+  color: white;
   font-size: 17px;
-  font-family: Arial, Helvetica, sans-serif, "Times New Roman", Times, serif;
+  font-family: "Chakra Petch", sans-serif;
   opacity: 1;
   text-align: left;
 }

@@ -1,12 +1,13 @@
 @import "~antd/dist/antd.css";
-
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Russo+One&family=Tinos&display=swap");
 .menu {
   padding: 0 20px;
   border-bottom: solid 1px #e8e8e8;
   overflow: auto;
   box-shadow: 0 0 30px #f3f1f1;
-  background-color: #1028a7;
+  background-color: #5d85b3;
   height: 70px;
+  font-family: "Chakra Petch", sans-serif;
 }
 
 .menu__logo {
@@ -118,7 +119,7 @@
 .navbar__logo {
   font-size: var(--font-large);
   font-weight: var(--weight-semi-bold);
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Chakra Petch", sans-serif;
   font-size: medium;
   color: #616161;
 }

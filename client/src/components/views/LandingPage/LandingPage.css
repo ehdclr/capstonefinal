@@ -1,6 +1,7 @@
 /* 여기서 부터 */
 /* font-family: 'Open Sans', sans-serif; */
-
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&family=Tinos&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Russo+One&family=Tinos&display=swap");
 /* Global */
 :root {
   /* Color */
@@ -43,7 +44,7 @@
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Chakra Petch", sans-serif;
   margin: 0;
   cursor: default; /*텍스트 위에 마우스 커서 올라가면 텍스트 형식으로 바뀌니까 고정하자*/
 }
@@ -76,6 +77,7 @@ h1 {
   font-weight: var(--weight-bold);
   color: var(--color-black);
   margin: 16px 0px;
+  font-family: "Chakra Petch", sans-serif;
 }
 
 h2 {
@@ -103,7 +105,7 @@ link {
   color: rgb(137, 43, 12);
   font-size: 100px;
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Chakra Petch", sans-serif;
 }
 link:hover {
   font-size: 100px;
@@ -135,7 +137,7 @@ link:hover {
 .navbar__logo {
   font-size: var(--font-large);
   font-weight: var(--weight-semi-bold);
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Chakra Petch", sans-serif;
   font-size: medium;
   color: #616161;
 }
@@ -167,18 +169,21 @@ link:hover {
 
   /* background: url(imgs/p.jpg) center/cover no-repeat; center가운데 cover반응형 norepeat반복안하게 */
   padding: 40px; /*전반적인 홈 화면 위아래 패딩*/
-  padding-top: 120px;
+  padding-top: 180px;
   text-align: center; /*모든 아이템 중간 정렬*/
+  height: 800px;
 }
 .home__avatar {
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   border: 2px solid lavenderblush; /*사진 테두리 경계주고 채우기*/
 }
 .home__title,
 .home__description {
   color: black;
+  margin-top: 30px;
+  font-family: "Chakra Petch", sans-serif;
 }
 .home__contact {
   font-size: var(--font-regular);
@@ -187,10 +192,11 @@ link:hover {
   padding: 8px 12px;
   border: 2px solid lavenderblush;
   border-radius: 4px;
-  color: mediumorchid;
+  color: #ffffff;
+  background-color: #0056b8;
 }
 .home__contact:hover {
-  background-color: var(--color-pink);
+  background-color: #5d85b3;
   opacity: 60%;
 }
 
@@ -251,7 +257,7 @@ link:hover {
   width: 280px;
   height: 250px;
   margin: 2px;
-  background-color: #aec1eb;
+  background-color: #ffffff;
 }
 
 .project.invisible {
@@ -308,6 +314,7 @@ link:hover {
 .contact__email,
 .contact__rights {
   color: var(--color-white);
+  font-family: "Chakra Petch", sans-serif;
 }
 
 .contact__title {
@@ -340,7 +347,7 @@ link:hover {
   margin: auto;
 }
 
-#testimonials {
+#work {
   background-color: var(--color-light-white);
 }
 

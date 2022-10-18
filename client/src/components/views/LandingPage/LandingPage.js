@@ -1,8 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Auth from "../../../hoc/auth";
 import { Link } from "react-router-dom";
 
 import "../LandingPage/LandingPage.css";
@@ -10,6 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import "react-pro-sidebar/dist/css/styles.css";
+const Logo = require("../../../images/Logo2.png");
+const s3image = require("../../../images/s3.png");
+const ec2image = require("../../../images/ec2.png");
+const reactimage = require("../../../images/react.png");
+const mongoimage = require("../../../images/mongo.png");
 
 <script
   src="https://kit.fontawesome.com/2be04788dd.js"
@@ -19,269 +21,71 @@ import "react-pro-sidebar/dist/css/styles.css";
 function LandingPage() {
   const navigate = useNavigate();
 
-  const onClickHandler = () => {
-    axios.get(`/api/users/logout`).then((response) => {
-      if (response.data.success) {
-        // props.history.push("/login")
-        navigate("/login");
-      } else {
-        alert("로그아웃 하는데 실패 했습니다.");
-      }
-    });
-  };
-
-  const onRegisterHandler = () => {
-    axios.post(`/api/users/login`).then((response) => {
-      // if (response.data.success) {
-      // props.history.push("/login")
-      navigate("/login");
-      // } else {
-      //     alert('로그아웃 하는데 실패 했습니다.')
-      // }
-    });
-  };
-
-  const onSignHandler = () => {
-    axios.post(`/api/users/register`).then((response) => {
-      // if (response.data.success) {
-      //     // props.history.push("/login")
-      navigate("/register");
-      // } else {
-      //     alert('로그아웃 하는데 실패 했습니다.')
-      // }
-    });
-  };
-
-  const onClickDrop = () => {
-    // axios.get(`/api/users/logout`)
-    //     .then(response => {
-    //         if (response.data.success) {
-    //             // props.history.push("/login")
-    //             navigate('/login');
-    //         } else {
-    //             alert('로그아웃 하는데 실패 했습니다.')
-    //         }
-    //     })
-    // navigate('/login');
-    function scrollIntoView(selector) {
-      const scrollTo = document.querySelector(selector);
-      scrollTo.scrollIntoView({ behavior: "smooth" });
-    }
-    const navbarMenu = document.querySelector(".navbar__menu");
-    navbarMenu.addEventListener("click", (event) => {
-      const target = event.target;
-      const link = target.dataset.link;
-      if (link == null) {
-        return;
-      }
-      navbarMenu.classList.remove("open");
-      scrollIntoView(link);
-    });
-    const navbarToggleBtn = document.querySelector(".navbar__toggle-btn");
-    navbarToggleBtn.addEventListener("click", () => {
-      navbarMenu.classList.toggle("open");
-    });
-  };
-
   const clickMe = () => {
-    navigate("/idcard");
+    navigate("/second");
   };
   return (
     <div>
       <section id="home">
         <div className="home__container">
-          <img src={"../../img/JBU.png"} alt="" className="home__avatar" />
-          <h1 className="home__title">Chou_Chou</h1>
-          <h3 className="home__description">Frontend Developer</h3>
-          <button className="home__contact">Contact me</button>
-        </div>
-      </section>
-
-      <section id="testimonials" className="section">
-        <div className="section__container">
-          <h1>Q&A</h1>
-          <h3>BMD가 추구하는 방향</h3>
-
-          <div className="testimonials">
-            <div className="testimonial">
-              <img
-                src={"../../img/cd.png"}
-                alt=""
-                className="testimonial__avatar"
-              />
-              <div className="testimonial__speech-bubble">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus neque quos vitae mollitia dolore, deserunt aut et
-                  ab distinctio sed doloremque beatae fuga saepe aliquid sit
-                  odit animi ipsum eum.
-                </p>
-                <p className="name">
-                  <a href="www.naver.com">이현종</a> /Joongbu
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="testimonials">
-            <div className="testimonial">
-              <div className="testimonial__speech-bubble">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus neque quos vitae mollitia dolore, deserunt aut et
-                  ab distinctio sed doloremque beatae fuga saepe aliquid sit
-                  odit animi ipsum eum.
-                </p>
-                <p className="name">
-                  <a href="www.naver.com">최유진</a> /Joongbu
-                </p>
-              </div>
-              <img
-                src={"../../img/cd.png"}
-                alt=""
-                className="testimonial__avatar"
-              />
-            </div>
-          </div>
-
-          <div className="testimonials">
-            <div className="testimonial">
-              <img
-                src={"../../img/cd.png"}
-                alt=""
-                className="testimonial__avatar"
-              />
-              <div className="testimonial__speech-bubble">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus neque quos vitae mollitia dolore, deserunt aut et
-                  ab distinctio sed doloremque beatae fuga saepe aliquid sit
-                  odit animi ipsum eum.
-                </p>
-                <p className="name">
-                  <a href="www.naver.com">이강봉</a> /Joongbu
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="testimonials">
-            <div className="testimonial">
-              <div className="testimonial__speech-bubble">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus neque quos vitae mollitia dolore, deserunt aut et
-                  ab distinctio sed doloremque beatae fuga saepe aliquid sit
-                  odit animi ipsum eum.
-                </p>
-                <p className="name">
-                  <a href="www.naver.com">박주형</a> /Joongbu
-                </p>
-              </div>
-              <img
-                src={"../../img/cd.png"}
-                alt=""
-                className="testimonial__avatar"
-              />
-            </div>
-          </div>
-
-          <div className="testimonials">
-            <div className="testimonial">
-              <img
-                src={"../../img/cd.png"}
-                alt=""
-                className="testimonial__avatar"
-              />
-              <div className="testimonial__speech-bubble">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus neque quos vitae mollitia dolore, deserunt aut et
-                  ab distinctio sed doloremque beatae fuga saepe aliquid sit
-                  odit animi ipsum eum.
-                </p>
-                <p className="name">
-                  <a href="www.naver.com">장예진</a> /Joongbu
-                </p>
-              </div>
-            </div>
-          </div>
+          <img src={Logo} alt="" className="home__avatar" />
+          <h1 className="home__title">Decentralized Identifier</h1>
+          {/* <h3 className="home__description">최종장박봉</h3> */}
+          <button className="home__contact" onClick={clickMe}>
+            Register
+          </button>
         </div>
       </section>
 
       <section id="work" className="section">
         <div className="section__container">
-          <h1>My Work</h1>
-          <h3>Projects</h3>
-          <div className="work__categories">
-            <button className="category__btn " data-filter="*">
-              All <span className="category__count">8</span>
-            </button>
-            <button className="category__btn" data-filter="front-end">
-              Front-end <span className="category__count">3</span>
-            </button>
-            <button className="category__btn" data-filter="back-end">
-              Back-end <span className="category__count">3</span>
-            </button>
-            <button className="category__btn" data-filter="mobile">
-              Mobile <span className="category__count">2</span>
-            </button>
-          </div>
+          <h1 className="home__title">Tech Stack</h1>
 
           <div className="work__projects">
-            <a
-              href="www.naver.com"
+            <div
               className="project"
               data-type="front-end"
               target="blank"
               datatype="front-end"
             >
-              <img src={"../../img/g.png"} alt="" className="project__img" />
+              <img src={s3image} alt="" className="project__img" />
               <div className="project__description">
-                <h3>Youtube Site</h3>
-                <span>Clone coding</span>
+                <h3>Amazon S3</h3>
               </div>
-            </a>
-            <a
-              href="www.naver.com"
+            </div>
+            <div
               className="project"
               data-type="front-end"
               target="blank"
               datatype="front-end"
             >
-              {" "}
-              <img src={"../../img/g.png"} alt="" className="project__img" />
+              <img src={ec2image} alt="" className="project__img" />
               <div className="project__description">
-                <h3>Youtube Site</h3>
-                <span>Clone coding</span>
+                <h3>Amazon EC2</h3>
               </div>
-            </a>
-            <a
-              href="www.naver.com"
+            </div>
+            <div
               className="project"
               data-type="front-end"
               target="blank"
               datatype="front-end"
             >
-              <img src={"../../img/g.png"} alt="" className="project__img" />
+              <img src={mongoimage} alt="" className="project__img" />
               <div className="project__description">
-                <h3>Youtube Site</h3>
-                <span>Clone coding</span>
+                <h3>Mongo DB</h3>
               </div>
-            </a>
-            <a
-              href="www.naver.com"
+            </div>
+            <div
               className="project"
               data-type="back-end"
               target="blank"
               datatype="back-end"
             >
-              <img src={"../../img/g.png"} alt="" className="project__img" />
+              <img src={reactimage} alt="" className="project__img" />
               <div className="project__description">
-                <h3>Youtube Site</h3>
-                <span>Clone coding</span>
+                <h3>React</h3>
               </div>
-            </a>
+            </div>
           </div>
         </div>
       </section>
@@ -290,28 +94,30 @@ function LandingPage() {
 
       <section id="contact" className="section">
         <h1 className="contact__title">BMD</h1>
-        <h2 className="contact__email">znfqbx@naver.com</h2>
         <div className="contact__links">
-          <a href="www.naver.com">
+          <Link to="">
             <FontAwesomeIcon className="heart" icon={faHeart} />
-          </a>
-          <a href="www.naver.com">
+          </Link>
+          <Link to={{ pathname: "//github.com/ehdclr" }} target="_blank">
             <FontAwesomeIcon className="heart" icon={faGithub} />
-          </a>
-          <a href="www.naver.com">
+          </Link>
+          <Link to={{ pathname: "//github.com/yejin32" }} target="_blank">
             <FontAwesomeIcon className="heart" icon={faGithub} />
-          </a>
-          <a href="www.naver.com">
+          </Link>
+          <Link to={{ pathname: "" }} target="_blank">
             <FontAwesomeIcon className="heart" icon={faGithub} />
-          </a>
-          <a href="www.naver.com">
+          </Link>
+          <Link to={{ pathname: "//github.com/Joohy2" }} target="_blank">
             <FontAwesomeIcon className="heart" icon={faGithub} />
-          </a>
-          <a href="www.naver.com">
+          </Link>
+          <Link to={{ pathname: "//github.com/redb0ng" }} target="_blank">
+            <FontAwesomeIcon className="heart" icon={faGithub} />
+          </Link>
+          <Link to="">
             <FontAwesomeIcon className="heart" icon={faHeart} />
-          </a>
+          </Link>
         </div>
-        <p className="contact__rights">2022 Chou_Chou - All rights reserved</p>
+        <p className="contact__rights">2022 최종장박봉 - All rights reserved</p>
       </section>
     </div>
   );
