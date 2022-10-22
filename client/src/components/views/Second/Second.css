@@ -89,3 +89,18 @@
 .heart {
   color: rgb(248, 226, 239);
 }
+
+@media screen and (max-width: 768px) {
+  .input_box {
+    width: 300px;
+  }
+  #button {
+    width: 300px;
+  }
+  #button:hover {
+    width: 300px;
+  }
+  #in {
+    width: 300px;
+  }
+}

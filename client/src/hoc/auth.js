@@ -15,7 +15,6 @@ export default function (SpecificComponent, option, adminRoute = null) {
     useEffect(() => {
       dispatch(auth()).then((response) => {
         console.log(response);
-
         if (!response.payload.isAuth) {
           if (option) {
             navigate("/login");
@@ -23,6 +22,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
         } else {
           // 로그인 한 상태
           if (adminRoute && !response.payload.isAdmin) {
+            alert("관리자 권한이 필요합니다.")
             navigate("/");
           } else {
             if (option === false) {
@@ -36,5 +36,5 @@ export default function (SpecificComponent, option, adminRoute = null) {
     return <SpecificComponent />;
   }
 
-  return <AuthenticationCheck />;
+  return <AuthenticationCheck/>;
 }

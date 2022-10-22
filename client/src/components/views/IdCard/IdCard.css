@@ -105,3 +105,16 @@
 img {
   margin: auto;
 }
+
+@media screen and (max-width: 768px) {
+  #input_button {
+    width: 300px;
+  }
+  #input_button:hover {
+    width: 300px;
+  }
+  .form {
+    width: 360px;
+    margin-left: 24%;
+  }
+}

@@ -3,17 +3,19 @@ const indy = require("../../indy/index");
 
 module.exports = {
   post: async (req, res) => {
-    const user = new User(req.body);
     try {
+      const user = new User(req.body);
       await user.save();
-      let userData = await User.findOne({email: req.body.email});
+      let userData = await User.findOne({ email: req.body.email });
       await indy.wallet.newRegister(null, userData.email, userData.password);
+
       return res.status(200).json({
         success: true
       })
     } catch (e) {
-      return res.status(400).json({
-        success: false, e
+      return res.json({
+        success: false,
+        error: e
       })
     }
   },

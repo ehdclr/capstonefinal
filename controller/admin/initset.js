@@ -2,7 +2,7 @@ const indy = require('../../indy/index');
 
 module.exports = {
   get: async (req, res) => {
-    if (!(indy.initSet.checkAlreadySet())) {
+    if ((indy.initSet.checkAlreadySet())) {
       await indy.initSet.setup()
       return res.status(200).json({
         success: true,

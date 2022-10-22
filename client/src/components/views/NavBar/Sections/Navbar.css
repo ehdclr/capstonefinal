@@ -59,6 +59,7 @@
 
 .menu_drawer .ant-drawer-body {
   padding: 0 !important;
+  background-color: #5d85b3;
 }
 
 /* align header of Drawer with header of page */
@@ -79,6 +80,7 @@
   }
 
   .menu__logo a {
+    margin-top: 10px;
     margin-left: -20px;
   }
 
@@ -89,6 +91,10 @@
 
   .menu__logo a {
     padding: 10px 20px;
+  }
+
+  #abc {
+    margin-top: 20px;
   }
 }
 

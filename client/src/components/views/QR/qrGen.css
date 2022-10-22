@@ -28,12 +28,7 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  background-color: #aec1eb;
-  width: 556px;
-  border-radius: 30px;
-  margin: auto;
-  padding: 33px;
-  margin-top: 40px;
+
 }
 
 .qrInput {
@@ -156,4 +151,23 @@ body {
   color: rgb(4, 11, 49);
   margin-bottom: 1em;
   padding: 0 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .main1,
+  .main2 {
+    width: 360px;
+  }
+  .textAreaIn {
+    width: 300px;
+  }
+  #input_button {
+    width: 300px;
+  }
+  #input_button:hover {
+    width: 300px;
+  }
+  .formContainer {
+    width: 330px;
+  }
 }

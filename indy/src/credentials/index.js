@@ -1,7 +1,6 @@
 'use strict';
 const sdk = require('indy-sdk');
 const indy = require('../../index');
-const utils = require('../utils');
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -12,21 +11,27 @@ exports.getCredential = async (wallet) => {
   let filter = {"schema_id" : schemaId}
   let cred = await sdk.proverGetCredentials(wallet, filter);
   let credValue = cred['attrs'];
+  await sdk.closeWallet(issuerWallet);
+  await sdk.closeWallet(wallet);
   return credValue;
 }
 
 //(createDid). 1. 2. 3
 exports.CreateCredentialProcess = async (walletName, walletKey, value) => {
-  let seedInfo = await indy.utils.walletKeyHash(walletName, walletKey);
-  console.log(seedInfo);
-  let proverWallet = await indy.wallet.get(walletName, walletKey);
-  let issuerWallet = await indy.wallet.get(process.env.COMMUSERVEICECENTER_WALLET_NAME, process.env.COMMUSERVEICECENTER_WALLET_KEY);
-  let [userDid, userVerkey] = await indy.did.createDid(seedInfo, proverWallet);
-  let credOffer = await exports.sendCredOffer(issuerWallet)
-  let [credReq, credReqMetaData] = await exports.sendCreateCredReq(proverWallet, credOffer)
-  let [credential, revId, revRegDelta, credId] = await indy.credentials.acceptRequestCreateCredential(proverWallet, issuerWallet, credOffer, credReq, credReqMetaData, value);
-  await sdk.closeWallet(issuerWallet);
-  return [proverWallet, userDid, userVerkey, credential, revId, revRegDelta, credId]
+  try {
+    let seedInfo = await indy.utils.walletKeyHash(walletName, walletKey);
+    console.log(seedInfo);
+    let proverWallet = await indy.wallet.get(walletName, walletKey);
+    let issuerWallet = await indy.wallet.get(process.env.COMMUSERVEICECENTER_WALLET_NAME, process.env.COMMUSERVEICECENTER_WALLET_KEY);
+    let [userDid, userVerkey] = await indy.did.createDid(seedInfo, proverWallet);
+    let credOffer = await exports.sendCredOffer(issuerWallet)
+    let [credReq, credReqMetaData] = await exports.sendCreateCredReq(proverWallet, credOffer)
+    let [credential, revId, revRegDelta, credId] = await indy.credentials.acceptRequestCreateCredential(proverWallet, issuerWallet, credOffer, credReq, credReqMetaData, value);
+    await sdk.closeWallet(issuerWallet);
+    return [proverWallet, userDid, userVerkey, credential, revId, revRegDelta, credId]
+  } catch (e) {
+    throw e;
+  }
 }
 
 // exports.createSeedInfo = async (walletName, secPassword) => {

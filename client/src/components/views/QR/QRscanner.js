@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Fab, TextareaAutosize } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { qrScan } from "../../../_actions/user_action"
+import { qrScan } from "../../../_actions/user_action";
 import QrScan from "react-qr-reader";
 import { message } from "antd";
+import Loading from "../Loading/Loading";
 import "../QR/qrGen.css";
-
 
 function QRscanner() {
   const dispatch = useDispatch();
@@ -15,40 +15,39 @@ function QRscanner() {
   const [qrState, setQrState] = useState(false);
   const [text, setText] = useState("");
   const [qrscan, setQrscan] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleScan = (data) => {
     if (data) {
-      setQrState(true)
+      setLoading(true)
+      setQrState(true);
       setQrscan(data);
       let body = {
-        qrData: data
+        qrData: data,
       };
       dispatch(qrScan(body)).then((response) => {
-        if (response.payload.success===true) {
+        if (response.payload.success === true) {
           console.log(response);
+          setLoading(false);
           setQrState(false);
           setText(message.success("성인 인증 완료"));
-          
+
           setTimeout(function () {
             // window.location.reload();
           }, 2500);
-          
         } else {
+          setLoading(false);
           setQrState(false);
         }
-      })
-
-
+      });
     }
   };
   const handleError = (err) => {
     console.error(err);
   };
 
-
-
-
   return (
     <div>
+      {loading && <Loading />}
       <div className="headerQr">
         <Link to="/">
           <Fab id="btnBack">
@@ -59,14 +58,15 @@ function QRscanner() {
       </div>
       <hr className="hr" />
       <div className="main2">
-        {qrState ? null : (<QrScan
-          
-        delay={300}
-        onError={handleError}
-        onScan={handleScan}
-        style={{ height: 240, width: 400, marginTop: 50 }}
-      />) }
-        
+        {qrState ? null : (
+          <QrScan
+            delay={300}
+            onError={handleError}
+            onScan={handleScan}
+            style={{ height: 240, width: 350, marginTop: 50 }}
+          />
+        )}
+
         <div className="textAreaIn">
           <TextareaAutosize
             style={{

@@ -24,9 +24,21 @@ module.exports = {
         if (!user) return res.json({ message: "토큰이 만료되었습니다." });
         if (user) {
           const user3 = new User3({...req.body, email: user.email,
+          }, (err) => {
+            if (err) {
+              return res.status(400).json({ success: false })
+            }
           });
-          await user3.save();
-          let [proverWallet, userDid, userVerkey, credential, revId, revRegDelta, credId] = await indy.credentials.CreateCredentialProcess(user.email, user.password, vcObj);
+          await user3.save().catch((err) => {
+            if (err) {
+              return res.status(400).json({ success: false })
+            }
+          });
+          let [proverWallet, userDid, userVerkey, credential, revId, revRegDelta, credId] = await indy.credentials.CreateCredentialProcess(user.email, user.password, vcObj).catch((err) => {
+            if (err) {
+              return res.status(400).json({ success: false })
+            }
+          });
           console.log("Create new user account",await sdk.listMyDidsWithMeta(proverWallet));
           console.log("userDid: ",userDid, "userVerkey: ",userVerkey,"credential :",credential,"revId: ",revId,"revRegDelta: ", revRegDelta,"credId: ", credId);
 
@@ -34,23 +46,46 @@ module.exports = {
         }
         return res.status(200).json({ success: true });
       });
-    } catch (err) {
-      console.log(err);
-      return res.status(401).json({ success: false });
+    } catch (e) {
+      console.log(e);
+      return 
+       // res.status(401).json({ success: false });
     }
   },
 
   get: async (req, res) => {
+    let curToken = req.cookies.x_auth;
+    let userEmail;
     try {
-      console.log();
-      User3.findOne({ email: req.user.email }, (err, images) => {
-        if (err) throw err;
-        if (!images) return res.json({ message: "등록한 이미지가 없습니다!" });
-
-        res.status(200).json({ message: "get photos", imageUrl: images.image });
-      });
+      await User.findByToken(curToken, async(err, user) => {
+        if (err) return console.log("gg")
+        userEmail = user.email;
+        await User3.findOne({ email: userEmail }).then(async (userData) => {
+          console.log(userData)
+          if (!userData) {
+            return res.json({
+              success: false, 
+              message: "Image not found"
+            })
+          }
+          let data = userData;
+          // let proverWallet = await indy.wallet.get(user.email, user.password)
+          // let value = await indy.credentials.getCredential(proverWallet)
+          return res.status(200).json({
+            success: true, data,
+          })
+        })
+      })
     } catch (err) {
-      console.log(err);
+      // return res.json({
+      //   success: false, err
+      // })
     }
   },
 };
+
+// User3.findOne({ email: user.email }, (err, images) => {
+//   if (err) throw err;
+//   if (!images) return res.json({ message: "등록한 이미지가 없습니다!" });
+//   res.status(200).json({ message: "get photos", imageUrl: images.image });
+// });

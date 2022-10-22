@@ -1,10 +1,19 @@
 import QRCode from "qrcode";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../QR/qrGen.css";
+import axios from "axios";
 
 function QRgenerator() {
   const [url, setUrl] = useState("");
   const [qr, setQr] = useState("");
+
+  useEffect(() => {
+    axios.post('/api/users/qrgen')
+      .then(response => {
+        setUrl(response.data.token);
+        console.log(response.data);
+      });
+  }, "");
 
   const GenerateQRCode = () => {
     QRCode.toDataURL(
@@ -31,13 +40,6 @@ function QRgenerator() {
       <div className="headerQr">QR Generator</div>
       <hr className="hr" />
       <div className="main1">
-        <input
-          className="qrInput"
-          type="text"
-          placeholder="vc value"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        />
         <button className="btnGen" onClick={GenerateQRCode}>
           Generate
         </button>

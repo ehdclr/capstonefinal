@@ -6,6 +6,7 @@ import {
   ID_USER,
   PASSWORD2_USER,
   QRSCAN_ADMIN,
+  GET_IDCARD,
 } from "./types";
 
 export function loginUser(dataTosubmit) {
@@ -63,6 +64,18 @@ export function qrScan(dataTosubmit) {
   }
 }
 
+
+export function getIdcard() {
+  const request = axios
+    .get("/api/users/idcard")
+    .then((response) => response.data);
+  
+  return {
+    type: GET_IDCARD,
+    payload: request,
+  };
+}
+
 export function auth() {
   const request = axios
     .get("/api/users/auth")
@@ -73,3 +86,4 @@ export function auth() {
     payload: request,
   };
 }
+

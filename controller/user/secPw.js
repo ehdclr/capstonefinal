@@ -8,7 +8,6 @@ module.exports = {
       if (err) throw err;
       if (!user) return res.json({ isAuth: false, error: true });
       if (user) {
-        console.log("user", user);
         user.compareSecondPassword(req.body.secondpassword, (err, isMatch) => {
           if (!isMatch) {
             return res.json({

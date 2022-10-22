@@ -24,7 +24,7 @@ function Second() {
 
     dispatch(password2User(body)).then((response) => {
       if (response.payload.secPasswordsuccess) {
-        navigate("/qr_generator");
+        navigate("/qr_card");
       } else {
         alert("Error");
       }
@@ -48,7 +48,7 @@ function Second() {
         onSubmit={onSubmitHandler}
       >
         <div className="Logo">
-          2-Step Verification
+          <h1>2-Step Verification</h1>
           <hr className="hr" />
         </div>
 

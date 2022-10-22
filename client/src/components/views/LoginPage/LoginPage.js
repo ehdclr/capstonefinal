@@ -56,7 +56,7 @@ function LoginPage() {
         onSubmit={onSubmitHandler}
       >
         <div className="Logo">
-          Welcome
+          <h1>Welcome</h1>
           <hr className="hr" />
         </div>
         <br />
@@ -68,6 +68,7 @@ function LoginPage() {
         >
           <label className="label"> Email</label>
           <input
+            id="in"
             className="input_box"
             placeholder="user@naver.com"
             type="email"
@@ -76,13 +77,14 @@ function LoginPage() {
           ></input>
           <label className="label">Password</label>
           <input
+            id="in"
             className="input_box"
             type="password"
             value={Password}
             onChange={onPasswordHandler}
           />
           <br />
-          <button id="button" className="input_box" htmlType="submit">
+          <button id="button1" className="input_box" htmlType="submit">
             Login
           </button>
           <br />

@@ -4,15 +4,23 @@ const indy = require('../../index');
 const fs = require('fs');
 const os = require('os');
 let poolHandle;
-let path = os.homedir() + "/.indy_client/wallet/governmentWallet";
+let govPath = os.homedir() + "/.indy_client/wallet/governmentWallet";
+let comPath = os.homedir() + "/.indy_client/wallet/communityServiceCenterWallet";
+let stoPath = os.homedir() + "/.indy_client/wallet/storeWallet";
 const dotenv = require('dotenv');
 
 dotenv.config();
 
 //셋업을 했었는지 여부 확인(정부지갑이 있나 확인)
 exports.checkAlreadySet = function () {
-  return fs.existsSync(path) 
+  if (!fs.existsSync(govPath) && !fs.existsSync(comPath) && !fs.existsSync(stoPath))
+  return true
 }
+// exports.checkAlreadySet = function () {
+//   if (govPath, comPath, stoPath)
+
+//   return 
+// }
 
 //정부, 주민센터 did 생성 및 did, wallet 셋업, 권한있는 did의 메타 데이터 설정, schema, credDef 생성 및 블록체인 등록
 exports.setup = async function () {

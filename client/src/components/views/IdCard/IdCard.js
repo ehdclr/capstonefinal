@@ -5,37 +5,19 @@ import { idUser } from "../../../_actions/user_action";
 import { Link, useNavigate } from "react-router-dom";
 import "../IdCard/IdCard.css";
 import Test from "../Test/Test";
+import Loading from "../Loading/Loading";
 const people = require("../../../images/profile.jpg");
 
-const IdCard = (props) => {
+const IdCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [imageUrl, setImageUrl] = useState(null);
-
-  const imgRef = useRef();
-
-  const onChangeImage = () => {
-    const reader = new FileReader();
-    const file = imgRef.current.files[0];
-    console.log(file);
-
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-      console.log("이미지주소", reader.result);
-    };
-  };
-
-  // const onClickFileBtn = (e) => {
-  //   imgRef.current.click();
-  // };
 
   const [Name, setName] = useState("");
   const [Id, setId] = useState("");
   const [Age, setAge] = useState("");
   const [Address, setAddress] = useState("");
   const [Images, setImages] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
@@ -59,7 +41,7 @@ const IdCard = (props) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-
+    setLoading(true);
     let body = {
       name: Name,
       id: Id,
@@ -72,8 +54,9 @@ const IdCard = (props) => {
       if (response.payload.success) {
         alert("민증 등록");
         navigate("/second");
-      } else {
+      } if(response.payload.success===false) {
         alert("민증 등록 실패");
+        setLoading(false);
       }
     });
   };
@@ -88,6 +71,7 @@ const IdCard = (props) => {
         height: "100vh",
       }}
     >
+      {loading && <Loading />}
       <form
         className="Img"
         style={{
@@ -98,7 +82,7 @@ const IdCard = (props) => {
         onSubmit={onSubmitHandler}
       >
         <div className="Logo">
-          Idcard
+          <h1>Idcard</h1>
           <hr className="hr" />
         </div>
         <br />
@@ -113,6 +97,7 @@ const IdCard = (props) => {
           </div>
           <label className="label"> Name</label>
           <input
+            id="in"
             className="input_box"
             //placeholder="user@naver.com"
             type="text"
@@ -122,6 +107,7 @@ const IdCard = (props) => {
           {/* <input className='input_box' type="email" value={Email} onChange={onEmailHandler}   /> */}
           <label className="label">Resident Registration Number</label>
           <input
+            id="in"
             className="input_box"
             type="text"
             value={Id}
@@ -129,6 +115,7 @@ const IdCard = (props) => {
           />
           <label className="label">Age</label>
           <input
+            id="in"
             className="input_box"
             type="number"
             value={Age}
@@ -136,6 +123,7 @@ const IdCard = (props) => {
           />
           <label className="label">Address</label>
           <input
+            id="in"
             className="input_box"
             type="text"
             value={Address}

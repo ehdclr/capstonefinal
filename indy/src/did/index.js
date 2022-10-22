@@ -24,7 +24,9 @@ exports.createDid = async function (didInfoParam, proverWallet) {
     });
     await sdk.setDidMetadata(proverWallet, UserDid, didMeta);
     await indy.ledger.sendNym(await indy.pool.get(), governmentWallet, stewardDid, UserDid, UserVerkey, null)
+    console.log(await sdk.listMyDidsWithMeta(proverWallet));
     await indy.crypto.createMasterSecret(proverWallet);
+    console.log(await sdk.listMyDidsWithMeta(proverWallet));
     return [UserDid, UserVerkey]
   } catch (e) {
     throw e;
@@ -82,7 +84,7 @@ exports.getCredDefByTag = async function (wallet, credDefTag) {
 };
 
 exports.settingGovernment = async function () {
-  governmentWallet = await indy.wallet.setup(
+  governmentWallet = await indy.wallet.get(
     process.env.GOVERNMENT_WALLET_NAME,
     process.env.GOVERNMENT_WALLET_KEY
   )
@@ -94,10 +96,12 @@ exports.settingGovernment = async function () {
 }
 
 exports.settingCommunityServices = async function () {
-  communityServiceCenterWallet = await indy.wallet.setup(
+  console.log(123)
+  communityServiceCenterWallet = await indy.wallet.get(
     process.env.COMMUSERVEICECENTER_WALLET_NAME,
     process.env.COMMUSERVEICECENTER_WALLET_KEY
   );
+  console.log(12323)
   let commuServiceCenterDidInfo = {
     'seed': process.env.ISSUER_DID_SEED
   };
@@ -105,7 +109,7 @@ exports.settingCommunityServices = async function () {
   return [issuerDid, issuerVerkey, communityServiceCenterWallet]
 }
 exports.settingStore = async function () {
-  storeWallet = await indy.wallet.setup(
+  storeWallet = await indy.wallet.get(
     process.env.STORE_WALLET_NAME,
     process.env.STORE_WALLET_KEY
   );

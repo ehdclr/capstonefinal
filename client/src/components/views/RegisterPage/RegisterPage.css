@@ -73,3 +73,29 @@ body {
   font-family: "Chakra Petch", sans-serif;
   font-size: 16px;
 }
+
+@media screen and (max-width: 768px) {
+  .Logo {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+  .hr {
+    width: 320px;
+  }
+  .form {
+    width: 360px;
+    margin-left: 23%;
+  }
+  .input_box {
+    width: 300px;
+  }
+  #button1 {
+    width: 300px;
+  }
+  #button:hover {
+    width: 300px;
+  }
+  #in {
+    width: 300px;
+  }
+}

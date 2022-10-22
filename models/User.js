@@ -39,24 +39,47 @@ const userSchema = mongoose.Schema({
 
 userSchema.pre("save", function (next) {
   var user = this;
-
   if (user.isModified("password") && user.isModified("secondpassword")) {
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if(err) return next(err)
       bcrypt.hash(user.password, salt, function (err, hash) {
         if (err) return next(err);
-        user.password = hash;
-      });
-      bcrypt.hash(user.secondpassword, salt, function (err, hash) {
-        if (err) return next(err);
-        user.secondpassword = hash;
-        next();
-      });
+        if (hash) {
+          user.password = hash;
+          bcrypt.hash(user.secondpassword, salt, function (err, secondHash) {
+            if (err) return next(err);
+            user.secondpassword = secondHash;
+            next();
+          });
+        } if(!hash) {
+          console.log("cannot find hash");
+        }
+      });   
     });
   } else {
     next();
   }
 });
+
+// userSchema.pre("save", function (next) {
+//   var user = this;
+//   if (user.isModified("password") && user.isModified("secondpassword")) {
+//     bcrypt.genSalt(saltRounds, function (err, salt) {
+//       if(err) return next(err)
+//       bcrypt.hash(user.password, salt, function (err, hash) {
+//         if (err) return next(err);
+//         user.password = hash;
+//       });
+//       bcrypt.hash(user.secondpassword, salt, function (err, hash) {
+//         if (err) return next(err);
+//         user.secondpassword = hash;
+//         next();
+//       });
+//     });
+//   } else {
+//     next();
+//   }
+// });
 
 userSchema.methods.compareSecondPassword = function (plainSecondPassword, cb) {
   bcrypt.compare(

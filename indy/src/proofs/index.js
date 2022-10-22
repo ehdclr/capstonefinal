@@ -90,27 +90,28 @@ exports.ProverSubmitPresentation = async (proverWallet) => {
     process.env.STORE_WALLET_NAME,
     process.env.STORE_WALLET_KEY)
   let issuerDid = await indy.did.getDidFromWallet(issuerWallet);
-  let revRegDefId = await indy.did.getEndpointDidAttribute(issuerWallet, 'revocation_registry_id')
+  let revRegDefId = await indy.did.getEndpointDidAttribute(issuerWallet, 'revocation_registry_id');
 
-  let [proverRevRegDelta, timestampOfDelta] = await indy.ledger.getRevRegDelta(await indy.pool.get(), issuerDid, revRegDefId[0], 0, indy.utils.getCurrentTimeInSeconds())
-  let [proofRequest, credsForProof, requestedCreds] = await exports.createVerificationPresentation(issuerWallet, proverWallet, timestampOfDelta)
+  let [proverRevRegDelta, timestampOfDelta] = await indy.ledger.getRevRegDelta(await indy.pool.get(), issuerDid, revRegDefId[0], 0, indy.utils.getCurrentTimeInSeconds());
+  let [proofRequest, credsForProof, requestedCreds] = await exports.createVerificationPresentation(issuerWallet, proverWallet, timestampOfDelta);
   
-  let message = [proverWallet, proverRevRegDelta, timestampOfDelta, proofRequest, credsForProof, requestedCreds]
-  console.log(message)
-  let authCryptMessage = await indy.crypto.authCrypt(proverWallet, verifierWallet, message)
-  await sdk.closeWallet(issuerWallet)
+  let message = [proverRevRegDelta, timestampOfDelta, proofRequest, credsForProof, requestedCreds]
+  console.log(message);
+  let authCryptMessage = await indy.crypto.authCrypt(proverWallet, verifierWallet, message);
+  await sdk.closeWallet(issuerWallet);
   await sdk.closeWallet(verifierWallet);
+  await sdk.closeWallet(proverWallet);
   return authCryptMessage;
 }
 
-exports.verifyProof = async (encryptedMessage) => {
+exports.verifyProof = async (proverWallet, encryptedMessage) => {
   let verifierWallet = await indy.wallet.get(process.env.STORE_WALLET_NAME, process.env.STORE_WALLET_KEY);
   let verifierDid = await indy.did.getDidFromWallet(verifierWallet);
   let decryptedMessage = await indy.crypto.authDecrypt(verifierWallet, encryptedMessage)
   let userData = JSON.parse(decryptedMessage["message"]);
   
   console.log(typeof userData);
-  let proverWallet = userData[0];
+  // let proverWallet = userData[0];
   
   let proverDid = await indy.did.getDidFromWallet(proverWallet);
 

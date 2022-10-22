@@ -89,3 +89,29 @@
 .heart {
   color: rgb(248, 226, 239);
 }
+
+@media screen and (max-width: 768px) {
+  .Logo {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+  .hr {
+    width: 320px;
+  }
+  .form {
+    width: 360px;
+    margin-left: 23%;
+  }
+  .input_box {
+    width: 300px;
+  }
+  #button {
+    width: 300px;
+  }
+  #button:hover {
+    width: 300px;
+  }
+  #in {
+    width: 300px;
+  }
+}

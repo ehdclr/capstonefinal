@@ -1,0 +1,148 @@
+.modalBackground {
+  /* width: 100vw;
+  height: 100vh; */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* opacity: 0.5; */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0%;
+  z-index: 50;
+}
+
+.modalContainer {
+  width: 600px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+  /* top: 20%; */
+  /* left: 36.97917%; */
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
+}
+.modalHeader {
+  position: relative;
+  display: flex;
+  top: 0;
+  padding: 10px;
+  color: #2e4d90;
+  opacity: 0.7;
+  font-size: 50px;
+  justify-content: center;
+  font-family: "Chakra Petch", sans-serif;
+  border-width: 50px;
+}
+/* .modalContainer .title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+} */
+
+.titleCloseBtn {
+  position: absolute;
+  right: 0;
+  display: flex;
+  /* justify-content: flex-end; */
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* .modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+} */
+
+/* .modalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.modalContainer .footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* #cancelBtn {
+  background-color: crimson;
+} */
+
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid red;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.registerbtn {
+  border-radius: 2px;
+  border: 1px solid #d32f2f;
+}
+
+.loginbtn {
+  border-radius: 2px;
+  border: 1px solid #d32f2f;
+}
+
+.qr-modalBackground {
+    /* width: 100vw;
+  height: 100vh; */
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  /* opacity: 0.5; */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0%;
+  z-index: 50;
+}
+
+.qr-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 500px) {
+  .modalContainer {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modalContainer {
+    width: 420px;
+  }
+}
