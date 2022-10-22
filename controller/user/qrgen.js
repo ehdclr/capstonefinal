@@ -11,10 +11,10 @@ module.exports = {
       let encryptedMessageRequest = await User3.findOne({ email: user.email })
       
       if (!encryptedMessageRequest.encryptedMessage) {
-        console.log(123)
+        
         let proverWallet = await indy.wallet.get(user.email, user.password);
         let encryptedMessage = await indy.proofs.ProverSubmitPresentation(proverWallet);
-        await User3.updateOne({ token: token }, { encryptedMessage: encryptedMessage })
+        await User3.updateOne({ email:user.email }, { encryptedMessage: encryptedMessage })
         if (encryptedMessage) {
           return res.status(200).json({
             success: true,

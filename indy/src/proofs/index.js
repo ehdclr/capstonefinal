@@ -116,11 +116,11 @@ exports.verifyProof = async (proverWallet, encryptedMessage) => {
   let proverDid = await indy.did.getDidFromWallet(proverWallet);
 
   let masterSecretId = await indy.crypto.getMasterSecretId(proverWallet);
-  let [provSchemas, provCredDefs, provRevocStates] = await indy.ledger.proverGetEntitiesFromLedger(proverWallet, proverDid, userData[4], userData[1], userData[2]);
+  let [provSchemas, provCredDefs, provRevocStates] = await indy.ledger.proverGetEntitiesFromLedger(proverWallet, proverDid, userData[3], userData[0], userData[1]);
 
-  let proof = await sdk.proverCreateProof(proverWallet, userData[3], userData[5], masterSecretId, provSchemas, provCredDefs, provRevocStates);
+  let proof = await sdk.proverCreateProof(proverWallet, userData[2], userData[4], masterSecretId, provSchemas, provCredDefs, provRevocStates);
   let [schemas, credDefs, revRegDefs, revRegs] = await indy.ledger.verifierGetEntitiesFromLedger(verifierDid, proof["identifiers"])
-  const result = await sdk.verifierVerifyProof(userData[3], proof, schemas, credDefs, revRegDefs, revRegs);
+  const result = await sdk.verifierVerifyProof(userData[2], proof, schemas, credDefs, revRegDefs, revRegs);
   
   await sdk.closeWallet(proverWallet);
   await sdk.closeWallet(verifierWallet);

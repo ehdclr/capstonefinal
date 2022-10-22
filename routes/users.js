@@ -16,14 +16,5 @@ router.post("/api/users/qrgen", userController.qrgen.post);
 router.get("/api/users/idcard", auth, userController.idcard.get);
 router.get("/api/users/logout", auth, userController.logout.get);
 router.get("/api/users/auth", auth, userController.auth.get);
-router.get("/api/users/test", auth, async (req, res) => {
-  try {
-    let proverWallet = await indy.wallet.get("zzz@gmail.com", "$2b$10$KwIYaC2iL6UyLSPMgZAA0.OiUfeBn2tLSfbKtR4YPLSjbFW4RbOM.")
-    await indy.did.createDid("00000000000000000000123456789012", proverWallet)
-    // console.log(test);
-    return 
-  } catch (err) {
-    throw err;
-  }
-})
+
 module.exports = router;

@@ -5,11 +5,8 @@ const { User } = require('../../models/User');
 module.exports = {
   post: async (req, res) => {
     try {
-      console.log(req.body)
       let user = await User.findOne({ token: req.body.qrData })
-      console.log(user);
       let userData = await User3.findOne({email:user.email})
-      console.log(userData.encryptedMessage)
       let proverWallet = await indy.wallet.get(user.email, user.password);
       let result = await indy.proofs.verifyProof(proverWallet, userData.encryptedMessage);
 
